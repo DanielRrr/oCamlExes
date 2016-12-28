@@ -36,6 +36,12 @@ let rec compress = function
   | small -> small
 ;;
 
+let rec dublicate list =
+  match list with
+  | [] -> []
+  | head :: tail -> head :: head :: dublicate tail
+;;
+
 last [1;9;7;3;5];;
 last2 [1;9;7;3;5];;
 lastN 2 [1;9;7;3;5];;
@@ -43,3 +49,5 @@ length [1;9;7;3;5];;
 reverse [1;9;7;3;5];;
 isPalindrome ["a";"b";"a";"b";"a"];;
 compress [11;11;11;22;33;33;44;55];;
+dublicate [11;11;11;22;33;33;44;55];;
+dublicate (compress [11;11;11;22;33;33;44;55]);;
