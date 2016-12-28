@@ -42,6 +42,17 @@ let rec dublicate list =
   | head :: tail -> head :: head :: dublicate tail
 ;;
 
+type 'a node =
+  | One of 'a
+  | Many of 'a node list
+;;
+
+let flat list =
+  let rec some thing = function
+  | [] -> thing
+  | One x :: tail -> some (x :: thing) tail
+  | Many l :: tail -> some (some thing l) tail in List.rev (some [] list);;
+
 last [1;9;7;3;5];;
 last2 [1;9;7;3;5];;
 lastN 2 [1;9;7;3;5];;
@@ -51,3 +62,4 @@ isPalindrome ["a";"b";"a";"b";"a"];;
 compress [11;11;11;22;33;33;44;55];;
 dublicate [11;11;11;22;33;33;44;55];;
 dublicate (compress [11;11;11;22;33;33;44;55]);;
+flat [ One "a" ; Many [ One "b" ; Many [ One "c" ; One "d" ] ; One "e" ] ];;
